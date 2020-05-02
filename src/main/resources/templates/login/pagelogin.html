@@ -229,7 +229,6 @@
                                         <li><a href="#">English<i class="fa fa-angle-down"></i></a></li>
                                         <li><a href="#">Italian<i class="fa fa-angle-down"></i></a></li>
                                         <li><a href="#">Spanish<i class="fa fa-angle-down"></i></a></li>
-                                        <li><a href="#">Japanese<i class="fa fa-angle-down"></i></a></li>
                                     </ul>
                                 </li>
                                 <li class="page_menu_item has-children">
@@ -238,7 +237,6 @@
                                         <li><a href="#">US Dollar<i class="fa fa-angle-down"></i></a></li>
                                         <li><a href="#">EUR Euro<i class="fa fa-angle-down"></i></a></li>
                                         <li><a href="#">GBP British Pound<i class="fa fa-angle-down"></i></a></li>
-                                        <li><a href="#">JPY Japanese Yen<i class="fa fa-angle-down"></i></a></li>
                                     </ul>
                                 </li>
                                 <li class="page_menu_item">
@@ -299,39 +297,49 @@
         </div>
 
     </header>
+	<div>
+		<form class="contact-form" action="/" th:object="${client}"
+			id="contact-form" method="get" enctype="multipart/form-data">
+			<h1>Login Form</h1>
+			<div>
+				<div>
+					<label>Nom client: </label><span id="userEmail-info" class="info"></span>
+				</div>
+				<div>
+					<input type="text" class="inputBox" placeholder="Nom"
+						name="nomClient" th:field="*{nomClient}" />
+				</div>
+			</div>
+			<div>
+				<div>
+					<label>Mot de passe: </label><span id="subject-info" class="info"></span>
+				</div>
+				<div>
+					<input type="password" placeholder="Mot de passe" id="subject"
+						class="inputBox" name="password" th:field="*{password}" />
+				</div>
+			</div>
 
-    <br>
-    <br>
+			<br>
+			<div>
+				<input type="submit" id="send" name="send" value="Sign in" />
+			</div>
+			<div class="cancel">
+				<div class="cancel">
+					<a id="cancel" href="/">Cancel</a>
+				</div>
+			</div>
+			<br>
+			<div>
+				<a href="/inscrireClient">inscrit vous</a>
+			</div>
+			<br>
 
-    <div>
-        <form class="contact-form" action="/" th:object="${client}" id="contact-form" method="get" enctype="multipart/form-data">
-            <h1>Login Form</h1>
-            <div>
-                <div>
-                    <label>Nom client: </label><span id="userEmail-info" class="info"></span>
-                </div>
-                <div>
-                    <input type="text" class="inputBox" placeholder="Nom" name="nomClient" th:field="*{nomClient}" />
-                </div>
-            </div>
-            <div>
-                <div>
-                    <label>Mot de passe: </label><span id="subject-info" class="info"></span>
-                </div>
-                <div>
-                    <input type="password" placeholder="Mot de passe" id="subject" class="inputBox" name="password" th:field="*{password}" />
-                </div>
-            </div>
+		</form>
+	</div>
 
-            <br>
-            <div>
-                <input type="submit" id="send" name="send" value="Sign in" />
-            </div>
-            <div class="cancel">
-                <div class="cancel"><a id="cancel" href="/">Cancel</a></div>
-            </div>
-        </form>
-    </div>
+
+
 
 
 

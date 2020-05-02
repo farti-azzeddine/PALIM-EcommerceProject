@@ -78,8 +78,7 @@ public class ProduitController {
 	
 	@RequestMapping("/AfficherProdBycat")
 	public String AfficherProdBycat(Produit produit ,Model model,@RequestParam("idCatPro")Long idCatPro)
-	{ 
-			
+	{ 	
 		List<Categorie> categorie1 = new ArrayList<Categorie>();
 		categorie1=categoriedao.findAll();
 		model.addAttribute("nomcategorie",categorie1);
