@@ -62,15 +62,26 @@
             </select>
             <br>
             <br>
-            <div>
-                <div>
-                    <label>Categorie: </label><span id="userEmail-info" class="info"></span>
-                </div>
-                <div>
-                    <input type="text" class="inputBox" name="categorie" placeholder="Id categorie" th:field="*{categorie}" />
-                </div>
-            </div>
+<!--             <div> -->
+<!--                 <div> -->
+<!--                     <label>Categorie: </label><span id="userEmail-info" class="info"></span> -->
+<!--                 </div> -->
+<!--                 <div> -->
+<!--                     <input type="text" class="inputBox" name="categorie" placeholder="Id categorie" th:field="*{categorie}" /> -->
+<!--                 </div> -->
+<!--             </div> -->
+           
+                 Nom categorie :<select th:field="*{categorie.idCategorie}">
+                 <option   th:each=" rabat : ${nomcategorie}"  th:text="${rabat.nomCategorie}" th:value="${rabat.idCategorie}">
+                 </option>
+
+               </select>
+
+            
+            
             <br>
+             <br>
+              <br>
             <div>
                 <input type="submit" id="send" name="send" value="Confirmer l'ajout" />
             </div>

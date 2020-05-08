@@ -39,8 +39,15 @@ public class ProduitController {
 	@RequestMapping("/AjouterProduit")
 	public String ajouterproduit(Model model , Categorie categorie)
 	{
+		List<Categorie> categorie1 = new ArrayList<Categorie>();
+		categorie1=categoriedao.findAll();
+		model.addAttribute("nomcategorie",categorie1);
+		
+		
+		
 		model.addAttribute("produit",new Produit());
 		return "produit/productForm";
+//		return "produit/pageajouterproduit";
 	}
 	
 	@RequestMapping("/AjouterProduitconfirmer")

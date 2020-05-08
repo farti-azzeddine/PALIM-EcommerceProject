@@ -1,0 +1,136 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {box-sizing: border-box;}
+
+body { 
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.header {
+  overflow: hidden;
+   background-color: #f1f1f1; 
+/*   background-color: blue; */
+/*    background-image:url("/images/produit/Enabel.jpg"); */
+  padding: 20px 10px;
+}
+
+.header a {
+  float: left;
+  color: black;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px; 
+  line-height: 25px;
+  border-radius: 4px;
+}
+
+.header a.logo {
+  font-size: 25px;
+  font-weight: bold;
+  text-align: left;
+}
+
+.header a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.header-right {
+  float: right;
+}
+.header-left {
+  float: left;
+}
+
+.header-center {
+      display: block;
+      
+}
+
+@media screen and (max-width: 500px) {
+  .header a {
+    float: none;
+    display: block;
+    text-align: left;
+  } 
+}
+</style>
+</head>
+<body>
+<div class="header">
+
+    <div class="header-left">
+        <a  class="logo" href="/">WebSiteName</a>
+    </div>
+
+<!--     <div class="header-center"> -->
+<!-- <img src="/images/produit/Enabel.jpg" width="70" height="50"/> -->
+<!--   </div> -->
+    <div class="header-left">
+         <a  class="active" href="/">Accueil</a>
+         <a  href="/AfficherListProduitVisiteur">Produit</a>
+         <a  href="/Cordonne">Contacter Nous</a>
+    </div>
+  
+    <div class="header-right">
+    <a class="logo"  href="/loginn" >Se Connecter</a>
+    <a class="logo"  href="/inscrireClient" >S'inscrire</a>
+   </div>
+</div>
+<br>
+<br>
+
+
+<form action="/AjouterProduitconfirmer" th:object="${produit}" method="get" enctype="multipart/form-data">
+
+Nom du produit:<input type="text" name="nomProduit" placeholder="nom du produit" th:field="*{nomProduit}"/> 
+<br>
+<br>
+Prix : <input type="text" name="prix" placeholder="saisie le prix" th:field="*{prix}"/> 
+<br>
+<br>
+Quantite : <input type="text" name="quantite" placeholder="saisie la quantite" th:field="*{quantite}"/> 
+<br>
+<br>
+Description : <input type="text" name="description" placeholder="Description" th:field="*{description}"/> 
+<br>
+<br>
+save azz
+<br>
+<input type="file" name="photos" th:field="*{photos}"/>
+
+<br>
+<br>
+
+
+Disponiblite :<select th:field="*{disponible}">
+<option value="true">True</option>
+<option value="false">False</option>
+</select>
+<br>
+<br>
+<!-- id : <input type="text" name="categorie" placeholder="id categorie" th:field="*{categorie}"/>   -->
+<br>
+<br>
+Nom categorie :<select th:field="*{categorie.idCategorie}">
+ <option   th:each=" rabat : ${nomcategorie}"  th:text="${rabat.nomCategorie}" th:value="${rabat.idCategorie}">
+    </option>
+
+</select>
+<br>
+<br>
+<br>
+<br>
+
+
+<input type="submit" value="Confirmer l'ajout"/> 
+</form>
+</body>
+</html>
