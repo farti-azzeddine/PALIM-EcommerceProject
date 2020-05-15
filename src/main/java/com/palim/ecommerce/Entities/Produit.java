@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.springframework.lang.NonNull;
 
@@ -14,10 +15,13 @@ public class Produit implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idProduit;
-    
+    @NotNull
+    @Size(min = 1,max = 70)
 	private String nomProduit;
 	private int prix;
 	private int quantite;
+	@NotNull
+    @Size(min = 1,max = 70)
 	private String description;
 	private String photos;
 	private boolean disponible;

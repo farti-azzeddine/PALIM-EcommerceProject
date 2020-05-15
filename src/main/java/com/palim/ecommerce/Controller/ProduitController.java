@@ -8,10 +8,9 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.condition.ProducesRequestCondition;
 
 import com.palim.ecommerce.Dao.CategorieDao;
 import com.palim.ecommerce.Dao.ClientDao;
@@ -44,26 +43,50 @@ public class ProduitController {
 		model.addAttribute("nomcategorie",categorie1);
 		
 		
-		
 		model.addAttribute("produit",new Produit());
-		return "produit/productForm";
-//		return "produit/pageajouterproduit";
+//		return "produit/productForm";
+		
+		return "produit/pageajouterproduit";
 	}
 	
 	@RequestMapping("/AjouterProduitconfirmer")
-	public String ajouterproduitconfirmer(Produit produit ,Model model)
+	public String ajouterproduitconfirmer(Model model, @Valid Produit produit ,  
+			BindingResult bindingresult)
 	{
+		if (bindingresult.hasErrors()) {
+			List<Categorie> categorie1 = new ArrayList<Categorie>();
+			categorie1=categoriedao.findAll();
+			model.addAttribute("nomcategorie",categorie1);
+			return "produit/pageajouterproduit";
+		} else {
+
+		
 		produitdao.save(produit);
 		System.out.println(produit.getIdProduit());
 		Produit produit1;
 		produit1=produitdao.findById(produit.getIdProduit()).get();
 		model.addAttribute("produitById",produit1);
 		
-		
-		
 		return "redirect:/AfficherListProduit";
+		}
 
 	}
+	
+//	@RequestMapping("/AjouterProduitconfirmer")
+//	public String ajouterproduitconfirmer(Produit produit ,Model model)
+//	{
+//		produitdao.save(produit);
+//		System.out.println(produit.getIdProduit());
+//		Produit produit1;
+//		produit1=produitdao.findById(produit.getIdProduit()).get();
+//		model.addAttribute("produitById",produit1);
+//		
+//		
+//		
+//		return "redirect:/AfficherListProduit";
+//
+//	}
+	
 	@RequestMapping("/AfficherListProduit")
 	public String AfficherListProduit(Produit produit ,Model model, Categorie categorie)
 	{

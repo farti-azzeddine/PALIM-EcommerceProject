@@ -61,9 +61,38 @@ body {
     text-align: left;
   } 
 }
+
+.rouge{
+       border-color: red;
+        }
+        
 </style>
 </head>
 <body>
+
+<script type="text/javascript">
+function chekk(){
+
+// 	alert("gggggg")
+		var list=document.querySelectorAll("#inputNomproduit");
+		for (let i = 0; i < list.length; i++) {
+	        if (list[i].value=="") {
+	            list[i].className='rouge';
+	            alert(list.length)
+	            
+	    switch (i) {
+        case 0: var spanNOM = document.getElementById("#spanNomproduit");
+                spanNOM.innerText = "veuillez remplir votre nom";
+        break;
+        case 1: var spanPRENOM = document.getElementById("#spanNomproduit");
+                spanPRENOM.innerText = "veuillez remplir votre prenom";
+        break;
+}
+}
+}
+}
+
+</script>
 <div class="header">
 
     <div class="header-left">
@@ -90,7 +119,16 @@ body {
 
 <form action="/AjouterProduitconfirmer" th:object="${produit}" method="get" enctype="multipart/form-data">
 
-Nom du produit:<input type="text" name="nomProduit" placeholder="nom du produit" th:field="*{nomProduit}"/> 
+<div>
+Nom du produit:<input id="inputNomproduit" type="text" name="nomProduit" placeholder="nom du produit" th:field="*{nomProduit}"/>
+<br>
+<br>
+<span   id="spanNomproduit" th:if="${#fields.hasErrors('nomProduit')}" onerror="hhh"
+style="font-size: 15px; font-weight: bold; color: red" 
+th:errors="${produit.nomProduit}">
+error name
+</span> 
+</div>
 <br>
 <br>
 Prix : <input type="text" name="prix" placeholder="saisie le prix" th:field="*{prix}"/> 
@@ -116,7 +154,7 @@ Disponiblite :<select th:field="*{disponible}">
 </select>
 <br>
 <br>
-<!-- id : <input type="text" name="categorie" placeholder="id categorie" th:field="*{categorie}"/>   -->
+<!-- id : <input type="text" name="categorie" placeholder="id categorie" th:field="*{categorie.idCategorie}"/>   -->
 <br>
 <br>
 Nom categorie :<select th:field="*{categorie.idCategorie}">
@@ -130,7 +168,10 @@ Nom categorie :<select th:field="*{categorie.idCategorie}">
 <br>
 
 
-<input type="submit" value="Confirmer l'ajout"/> 
+<input type="submit" onclick="chekk()" value="Confirmer l'ajout"/> 
 </form>
+
+
+
 </body>
 </html>
