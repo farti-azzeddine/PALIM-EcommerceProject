@@ -4,6 +4,7 @@
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <style>
 * {box-sizing: border-box;}
 
@@ -70,28 +71,20 @@ body {
 </head>
 <body>
 
-<script type="text/javascript">
-function chekk(){
-
-// 	alert("gggggg")
-		var list=document.querySelectorAll("#inputNomproduit");
+<script th:inline="javascript">
+	
+    function chekk(){
+		alert("hhhh")
+       var list =document.querySelectorAll("#inputNomproduit");
 		for (let i = 0; i < list.length; i++) {
-	        if (list[i].value=="") {
-	            list[i].className='rouge';
-	            alert(list.length)
-	            
-	    switch (i) {
-        case 0: var spanNOM = document.getElementById("#spanNomproduit");
-                spanNOM.innerText = "veuillez remplir votre nom";
-        break;
-        case 1: var spanPRENOM = document.getElementById("#spanNomproduit");
-                spanPRENOM.innerText = "veuillez remplir votre prenom";
-        break;
-}
-}
-}
-}
-
+ 	        if (list[i].value=="") {
+ 	        	list[0].className='rouge';
+ 	            alert(list.length)
+ 	            alert(i)
+ 	        }
+ 	        }
+	}
+ 
 </script>
 <div class="header">
 
@@ -120,14 +113,21 @@ function chekk(){
 <form action="/AjouterProduitconfirmer" th:object="${produit}" method="get" enctype="multipart/form-data">
 
 <div>
-Nom du produit:<input id="inputNomproduit" type="text" name="nomProduit" placeholder="nom du produit" th:field="*{nomProduit}"/>
+Nom du produit:<input th:id="inputNomproduit" type="text" name="nomProduit" placeholder="nom du produit" 
+th:field="*{nomProduit}" />
 <br>
 <br>
-<span   id="spanNomproduit" th:if="${#fields.hasErrors('nomProduit')}" onerror="hhh"
-style="font-size: 15px; font-weight: bold; color: red" 
-th:errors="${produit.nomProduit}">
-error name
+<span   id="spanNomproduit" th:if="${#fields.hasErrors('nomProduit')}" 
+style="font-size: 15px; font-weight: bold; color: red ;" 
+th:text="'kkkkkkkkk'"
+>
 </span> 
+
+
+<!-- <span   id="spanNomproduit" th:if="${#fields.hasErrors('nomProduit')}" onerror="hhh" -->
+<!-- style="font-size: 15px; font-weight: bold; color: red ;border-color: red;"  -->
+<!-- th:errors="${produit.nomProduit}"> -->
+<!-- </span>  -->
 </div>
 <br>
 <br>
@@ -168,7 +168,7 @@ Nom categorie :<select th:field="*{categorie.idCategorie}">
 <br>
 
 
-<input type="submit" onclick="chekk()" value="Confirmer l'ajout"/> 
+<input type="submit" th:onclick="chekk()" value="Confirmer l'ajout"/> 
 </form>
 
 
