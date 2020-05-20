@@ -62,30 +62,27 @@ body {
     text-align: left;
   } 
 }
-
+.vert{
+       border-color: green;
+        }
 .rouge{
        border-color: red;
         }
         
 </style>
+<script th:inline="javascript">
+$(function(){
+    $("#red").click(function(){ 
+    if ($("#inputNomproduit").val() == '') {
+    	alert("jeeje");
+    	$("input").addClass( "rouge" );
+	}
+    });
+    }); 
+</script>
 </head>
 <body>
 
-<script th:inline="javascript">
-	
-    function chekk(){
-		alert("hhhh")
-       var list =document.querySelectorAll("#inputNomproduit");
-		for (let i = 0; i < list.length; i++) {
- 	        if (list[i].value=="") {
- 	        	list[0].className='rouge';
- 	            alert(list.length)
- 	            alert(i)
- 	        }
- 	        }
-	}
- 
-</script>
 <div class="header">
 
     <div class="header-left">
@@ -114,12 +111,12 @@ body {
 
 <div>
 Nom du produit:<input th:id="inputNomproduit" type="text" name="nomProduit" placeholder="nom du produit" 
-th:field="*{nomProduit}" />
+th:field="*{nomProduit}"/>
 <br>
 <br>
 <span   id="spanNomproduit" th:if="${#fields.hasErrors('nomProduit')}" 
 style="font-size: 15px; font-weight: bold; color: red ;" 
-th:text="'kkkkkkkkk'"
+th:text="'veuillez entrer le nom du produit'"
 >
 </span> 
 
@@ -168,8 +165,9 @@ Nom categorie :<select th:field="*{categorie.idCategorie}">
 <br>
 
 
-<input type="submit" th:onclick="chekk()" value="Confirmer l'ajout"/> 
+<input type="submit" id="red" value="Confirmer l'ajout"/> 
 </form>
+
 
 
 

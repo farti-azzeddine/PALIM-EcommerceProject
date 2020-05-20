@@ -44,9 +44,9 @@ public class ProduitController {
 		
 		
 		model.addAttribute("produit",new Produit());
-//		return "produit/productForm";
+		return "produit/productForm";
 		
-		return "produit/pageajouterproduit";
+//		return "produit/pageajouterproduit";
 	}
 	
 	@RequestMapping("/AjouterProduitconfirmer")
@@ -57,7 +57,9 @@ public class ProduitController {
 			List<Categorie> categorie1 = new ArrayList<Categorie>();
 			categorie1=categoriedao.findAll();
 			model.addAttribute("nomcategorie",categorie1);
-			return "produit/pageajouterproduit";
+//			return "produit/pageajouterproduit";
+			return "produit/productForm";
+			
 		} else {
 
 		
@@ -129,6 +131,34 @@ public class ProduitController {
 		return "produit/pageModifierProduit";
 	}
 	
+	
+	@RequestMapping("/ModifierProduitconfirmer")
+	public String modifierProduitconfirmer(Model model, @Valid Produit produit ,  
+			BindingResult bindingresult)
+	{
+		if (bindingresult.hasErrors()) {
+			
+			return "produit/pageModifierProduit";
+			
+		}else{
+	
+			produitdao.save(produit);
+			
+			List<Produit> produit1 = new ArrayList<Produit>();
+			produit1=produitdao.findAll();
+			model.addAttribute("listproduit",produit1);
+			
+			return "redirect:/AfficherListProduit";
+			}
+		
+//			produitdao.save(produit);
+//		
+//		List<Produit> produit1 = new ArrayList<Produit>();
+//		produit1=produitdao.findAll();
+//		model.addAttribute("listproduit",produit1);
+//		return "redirect:/AfficherListProduit";	
+	}
+	
 	@RequestMapping("/showProduct")
 	public String ShowProduct(Model model, @RequestParam("idPro")Long idPro)
 	{
@@ -137,18 +167,6 @@ public class ProduitController {
 		
 		return "produit/productDescription";
 	}
-	
-	@RequestMapping("/ModifierProduitconfirmer")
-	public String modifierProduitconfirmer(Produit produit ,Model model)
-	{
-			produitdao.save(produit);
-		
-		List<Produit> produit1 = new ArrayList<Produit>();
-		produit1=produitdao.findAll();
-		model.addAttribute("listproduit",produit1);
-		return "redirect:/AfficherListProduit";	
-	}
-		
 	
 	@RequestMapping("/SupprimerProduit")
 	public String SupprimerProduit( Produit produit ,Model model, @RequestParam("idPro")Long idPro)

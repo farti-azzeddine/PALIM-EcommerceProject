@@ -305,15 +305,23 @@
             <h1>Product modification</h1>
             <div>
                 <div>
-                    <label>Product name: </label><span id="userName-info" class="info"></span>
+                    <label>Product name: </label>
+                    <span   id="userName-info" class="info" 
+                            th:if="${#fields.hasErrors('nomProduit')}"
+                            th:text="'veuillez Rentrer le nom du produit'">
+                    </span>
                 </div>
-                <div>
+            <div>
                     <input type="text" id="userName" name="nomProduit" class="inputBox" th:field="*{nomProduit}" />
                 </div>
             </div>
             <div>
                 <div>
-                    <label>Prix: </label><span id="userEmail-info" class="info"></span>
+                    <label>Prix: </label>
+                    <span   id="userEmail-info" class="info"
+                            th:if="${#fields.hasErrors('prix')}"
+                            th:text="'veuillez Rentrer le prix'">
+                    </span>
                 </div>
                 <div>
                     <input type="text" class="inputBox" name="prix" th:field="*{prix}" />
@@ -321,7 +329,11 @@
             </div>
             <div>
                 <div>
-                    <label>Quantite: </label><span id="subject-info" class="info"></span>
+                    <label>Quantite: </label>
+                    <span   id="subject-info" class="info" 
+                            th:if="${#fields.hasErrors('quantite')}"
+                            th:text="'veuillez Rentrer la quantité'">
+                    </span>
                 </div>
                 <div>
                     <input type="text" id="subject" class="inputBox" name="quantite" th:field="*{quantite}" />
@@ -329,7 +341,11 @@
             </div>
             <div>
                 <div>
-                    <label>Description: </label><span id="userMessage-info" class="info"></span>
+                    <label>Description: </label>
+                    <span   id="userMessage-info" class="info" 
+                            th:if="${#fields.hasErrors('description')}"
+                            th:text="'veuillez remplir la discription'">
+                    </span>
                 </div>
                 <div>
                     <textarea id="message" class="inputBox" name="description" th:field="*{description}"></textarea>
@@ -343,7 +359,7 @@
                     <img th:src="@{'/images/produit/{id}'(id=${produit.photos})}" width="100" height="100" />
                 </div>
                 <div>
-                    <input type="file" th:text="${produit.photos}" th:field="*{photos}" />
+                    <input type="hidden" th:text="${produit.photos}" th:field="*{photos}" />
                 </div>
             </div>
             <br>

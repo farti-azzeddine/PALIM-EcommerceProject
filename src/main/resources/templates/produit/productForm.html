@@ -307,16 +307,24 @@
             <h1>New Product</h1>
             <br>
             <br>
+            
             <div>
-             Nom categorie : <select th:field="*{categorie.idCategorie}">
-             <option   th:each=" rabat : ${nomcategorie}" th:text="${rabat.nomCategorie}"  th:value="${rabat.idCategorie}">
-             </option>
-             </select>
+              <div>
+                   <label>Nom categorie :</label>
+                   <select th:field="*{categorie.idCategorie}">
+                   <option   th:each=" rabat : ${nomcategorie}" th:text="${rabat.nomCategorie}"  th:value="${rabat.idCategorie}">
+                   </option>
+                   </select>
+              </div>
             </div>
             <br>
             <div>
                 <div>
-                    <label>Product name: </label><span id="userName-info" class="info"></span>
+                    <label>Product name: </label>
+                    <span   id="userName-info" class="info" 
+                            th:if="${#fields.hasErrors('nomProduit')}"
+                            th:text="'veuillez entrer le nom du produit'">
+                    </span> 
                 </div>
                 <div>
                     <input type="text" id="userName" name="nomProduit" class="inputBox" placeholder="nom du produit" th:field="*{nomProduit}" />
@@ -324,7 +332,11 @@
             </div>
             <div>
                 <div>
-                    <label>Prix: </label><span id="userEmail-info" class="info"></span>
+                    <label>Prix: </label>
+                    <span   id="userEmail-info" class="info"
+                            th:if="${#fields.hasErrors('prix')}"
+                            th:text="'veuillez entrer le prix'">
+                    </span>
                 </div>
                 <div>
                     <input type="text" class="inputBox" name="prix" placeholder="saisie le prix" th:field="*{prix}" />
@@ -332,7 +344,12 @@
             </div>
             <div>
                 <div>
-                    <label>Quantite: </label><span id="subject-info" class="info"></span>
+                    <label>Quantite: </label>
+                    
+                    <span   id="subject-info" class="info"
+                            th:if="${#fields.hasErrors('quantite')}"
+                            th:text="'veuillez entrer la quantité'">
+                    </span>
                 </div>
                 <div>
                     <input type="text" id="subject" class="inputBox" name="quantite" placeholder="saisie la quantite" th:field="*{quantite}" />
@@ -340,7 +357,11 @@
             </div>
             <div>
                 <div>
-                    <label>Description: </label><span id="userMessage-info" class="info"></span>
+                    <label>Description: </label>
+                    <span   id="userMessage-info" class="info" 
+                            th:if="${#fields.hasErrors('description')}"
+                            th:text="'veuillez remplir la discription'">
+                    </span>
                 </div>
                 <div>
                     <textarea id="message" class="inputBox" name="description" placeholder="Description" th:field="*{description}"></textarea>
@@ -348,7 +369,11 @@
             </div>
             <div>
                 <div>
-                    <label>Save as: </label><span id="subject-info" class="info"></span>
+                    <label>Save as: </label>
+                    <span   id="subject-info" class="info" 
+                            th:if="${#fields.hasErrors('photos')}"
+                            th:text="'veuillez choisir la photo'">
+                    </span>
                 </div>
                 <div>
                     <input type="file" name="photos" th:field="*{photos}" />

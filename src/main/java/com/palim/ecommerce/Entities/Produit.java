@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.*;
+import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -18,7 +19,9 @@ public class Produit implements Serializable {
     @NotNull
     @Size(min = 1,max = 70)
 	private String nomProduit;
+    @DecimalMin("1")
 	private int prix;
+	@DecimalMin("1")
 	private int quantite;
 	@NotNull
     @Size(min = 1,max = 70)
