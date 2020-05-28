@@ -1,6 +1,5 @@
 package com.palim.ecommerce.Controller;
 
-import java.io.File;
 import java.util.*;
 
 import javax.validation.Valid;
@@ -12,10 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.palim.ecommerce.Dao.CategorieDao;
-import com.palim.ecommerce.Dao.ClientDao;
-import com.palim.ecommerce.Dao.CommandeDao;
-import com.palim.ecommerce.Dao.ProduitDao;
+import com.palim.ecommerce.Dao.*;
 import com.palim.ecommerce.Entities.Categorie;
 import com.palim.ecommerce.Entities.Produit;
 

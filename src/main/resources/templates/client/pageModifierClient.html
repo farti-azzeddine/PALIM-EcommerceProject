@@ -300,23 +300,33 @@
     </header>
     <!--Contact Form-->
     <div>
-        <form class="contact-form" action="/ModifierModifierClient" th:object="${clientModifier}" id="contact-form" method="get" enctype="multipart/form-data">
+        <form class="contact-form" action="/ModifierconfirmerClient" th:object="${clientModifier}" id="contact-form" method="get" enctype="multipart/form-data">
             <h1>Client modification</h1>
             <div>
                 ID de Client :<input th:text="${clientModifier.idClient}" type="hidden" name="idClient" th:field="*{idClient}" />
                 <br>
                 <br>
+                </div>
                 <div>
-                    <label>Nom client: </label><span id="userEmail-info" class="info"></span>
+                <div>
+                    <label>Nom client: </label>
+                    <span   id="userName-info" class="info"
+                            th:if="${#fields.hasErrors('nomClient')}"
+                            th:text="'veuillez rentrer le nom du client'">
+                    </span>
                 </div>
                 <div>
                     <input type="text" class="inputBox" name="nomClient" th:field="*{nomClient}" />
                 </div>
             </div>
             <div>
-
-                <label>Adress: </label><span id="userName-info" class="info"></span>
-
+                  <div>
+                <label>Adresse: </label>
+                       <span class="info"
+						th:if="${#fields.hasErrors('adresse')}"
+						th:text="'veuillez donner ton Adreese'"> 
+						</span>
+                </div>
                 <div>
                     <input type="text" id="userName" name="adresse" class="inputBox" th:field="*{adresse}" />
                 </div>

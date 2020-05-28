@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.Collection;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Client implements Serializable{
@@ -11,10 +13,20 @@ public class Client implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long idClient;
+	@NotNull
+    @Size(min = 1,max = 70)
 	private String nomClient;
+	@NotNull
+	@Size(min = 1,max = 90)
 	private String adresse;
+	@NotNull
+    @Size(min = 1,max = 70)
 	private String email;
+	@NotNull
+    @Size(min = 1,max = 70)
 	private String tel;
+	@NotNull
+    @Size(min = 1,max = 70)
 	private String password;
 
 	@OneToMany(mappedBy="client" ,fetch=FetchType.EAGER)

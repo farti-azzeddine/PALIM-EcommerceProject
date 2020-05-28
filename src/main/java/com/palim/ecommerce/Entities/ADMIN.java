@@ -1,7 +1,6 @@
 package com.palim.ecommerce.Entities;
 
 import java.io.Serializable;
-import java.util.Collection;
 
 import javax.persistence.*;
 @Entity

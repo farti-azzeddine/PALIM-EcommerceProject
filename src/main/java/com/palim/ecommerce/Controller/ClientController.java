@@ -2,10 +2,12 @@ package com.palim.ecommerce.Controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -32,12 +34,20 @@ public class ClientController {
 	}
 	
 	@RequestMapping("/AjouterClientconfirmer")
-	public String ajoutercategorieconfirmer(Client client ,Model model)
+	public String ajoutercategorieconfirmer(Model model , @Valid Client client ,
+			 BindingResult bindingresult)
 	{
-		clientdao.save(client);
+		if(bindingresult.hasErrors()) {
+			System.out.println("test");
+			model.addAttribute("client",client);
+			return "client/pageajouterclient";
+		}
+		else {
+			clientdao.save(client);
+			//return "redirect:/";
+	    	return "redirect:/AfficherClient";
+		}
 		
-		//return "redirect:/";
-    	return "redirect:/AfficherClient";
 	}
 	
 	@RequestMapping("/AfficherClient")
@@ -59,15 +69,25 @@ public class ClientController {
 		return "client/pageModifierClient";
 	}
 	
-	@RequestMapping("/ModifierModifierClient")
-	public String modifierModifierClient(Client client ,Model model)
+	@RequestMapping("/ModifierconfirmerClient")
+	public String modifierModifierClient(Model model , @Valid Client client ,
+			 BindingResult bindingresult)
 	{
-		clientdao.save(client);
 		
-         List<Client> client1 = new ArrayList<Client>();
-	     client1=clientdao.findAll();
-	     model.addAttribute("listclient",client1);
-		return "client/pageListClient";	
+          if (bindingresult.hasErrors()) {
+        	
+        	model.addAttribute("clientModifier",client);
+			return "client/pageModifierClient";
+			
+		}else{
+			clientdao.save(client);
+			
+	         List<Client> client1 = new ArrayList<Client>();
+		     client1=clientdao.findAll();
+		     model.addAttribute("listclient",client1);
+			return "client/pageListClient";
+		}
+			
 	}
 	
 	

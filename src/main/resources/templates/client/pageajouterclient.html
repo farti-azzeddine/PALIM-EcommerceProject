@@ -300,30 +300,49 @@
             <h1>Register</h1>
             <div>
                 <div>
-                    <label>Nom client: </label><span id="userEmail-info" class="info"></span>
+                    <label>Nom client: </label>
+                    <span   id="userName-info" class="info"
+                            th:if="${#fields.hasErrors('nomClient')}"
+                            th:text="'veuillez entrer le nom du client'">
+                    </span>
                 </div>
                 <div>
-                    <input type="text" class="inputBox" placeholder="Nom" name="nomClient" th:field="*{nomClient}" />
+                    <input type="text" class="inputBox" placeholder="Nom Client" name="nomClient" th:field="*{nomClient}" />
                 </div>
             </div>
             <div>
                 <br>
-                <label>Adress: </label><span id="userName-info" class="info"></span>
-
-                <div>
-                    <input type="text" id="userName" name="Adresse" placeholder="adresse" class="inputBox" th:field="*{adresse}" />
+				<div>
+					<label>Adresse: </label> 
+					    <span class="info"
+						th:if="${#fields.hasErrors('adresse')}"
+						th:text="'veuillez donner ton Adreese'"> 
+						</span>
+				</div>
+				<div>
+                    <input type="text" name="adresse" placeholder="Adresse" class="inputBox" th:field="*{adresse}" />
                 </div>
             </div>
             <div>
-                <label>Email: </label><span id="userName-info" class="info"></span>
-
+            <div>
+                <label>Email: </label>
+                <span id="userName-info" class="info"></span>
+                  <span   class="info"
+                        th:if="${#fields.hasErrors('email')}"
+                        th:text="'veuillez remplir votre email'">
+                  </span>
+               </div>        
                 <div>
                     <input type="email" id="userName" placeholder="Email" name="email" class="inputBox" th:field="*{email}" />
                 </div>
             </div>
             <div>
                 <div>
-                    <label>Telephone: </label><span id="userEmail-info" class="info"></span>
+                    <label>Telephone: </label>
+                    <span   class="info"
+                        th:if="${#fields.hasErrors('tel')}"
+                        th:text="'veuillez remplir votre numero '">
+                  </span>
                 </div>
                 <div>
                     <input type="text" class="inputBox" name="tel" placeholder="Telephone" th:field="*{tel}" />
@@ -331,7 +350,11 @@
             </div>
             <div>
                 <div>
-                    <label>Mot de passe:: </label><span id="subject-info" class="info"></span>
+                    <label>Mot de passe:: </label>
+                    <span   id="subject-info" class="info"
+                        th:if="${#fields.hasErrors('password')}"
+                        th:text="'veuillez remplir password '">
+                  </span>
                 </div>
                 <div>
                     <input type="password" placeholder="Mot de passe" id="subject" class="inputBox" name="password" th:field="*{password}" />
