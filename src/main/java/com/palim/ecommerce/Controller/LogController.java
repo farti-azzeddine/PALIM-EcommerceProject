@@ -25,7 +25,7 @@ public class LogController {
 	
 	
 	@RequestMapping("/loginn")
-	public String loginn(Model model)
+	public String loginn(Model model )
 	{
 		
 		model.addAttribute("client",new Client());
